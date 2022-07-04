@@ -8,9 +8,8 @@ const Task =  connection.define('tasks', {
     allowNull : false
   },
 	priority      : {
-    type        : DataTypes.ENUM,
-    values      : ['high', 'medium', 'low'],
-    defaultValue: 'low'
+    type        : DataTypes.INTEGER,
+    defaultValue: 2
   },
 	active        : {
     type        : DataTypes.BOOLEAN,
@@ -29,6 +28,6 @@ User.hasMany(Task, {
 })
 Task.belongsTo(User)
 
-Task.sync()
+Task.sync({ alter: true})
 
 module.exports = Task
