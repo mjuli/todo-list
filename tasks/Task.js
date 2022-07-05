@@ -28,6 +28,6 @@ User.hasMany(Task, {
 })
 Task.belongsTo(User)
 
-Task.sync({ alter: true})
+Task.sync()
 
 module.exports = Task
