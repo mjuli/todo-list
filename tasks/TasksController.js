@@ -65,4 +65,27 @@ router.post('/tasks/delete', async(req, res) => {
   }
 })
 
+router.post('/tasks/edit', async(req, res) => {
+  console.log('req.body: ', req.body)
+  const id = req.body.id
+  const description = req.body.task
+
+  if(!isNaN(id) && description){
+    try {
+      const taskDB = await Task
+        .findOne({
+          where: { id }
+        })
+
+      await taskDB
+        .update({ description })
+
+      res.redirect('/tasks')
+
+    } catch (error) {
+        console.error('>>> Erro ao editar tarefa:', error)
+    }
+  }
+})
+
 module.exports = router;
